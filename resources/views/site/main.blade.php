@@ -73,7 +73,7 @@
                     </div>
                     <div class="col-12">
                         <b><label for="message"class="form-label">Mensagem</label></b>
-                        <textarea class="form-control" placeholder="Digite aqui sua mensagem..." id="message" style="height: 100px"></textarea>
+                        <textarea class="form-control messageMain" placeholder="Digite aqui sua mensagem..." id="message"></textarea>
                     </div>
                     <div class="col-12"><button type="submit" class="btn btn-primary">Enviar</button></div>
                 </form>
@@ -81,8 +81,8 @@
         </section>
     </main>
 
-    <footer class="text-center text-white" style="background-color: #ffffff;">
-        <div class="text-center p-3" style="background-color: rgb(255, 255, 255);">
+    <footer class="text-center text-white footer">
+        <div class="text-center p-3">
             <span class="text-black">© 2024 Feito por:</span>
             <a class="text-black" href="https://johnatanfreire.com.br/">Johnatan Freire</a>
         </div>

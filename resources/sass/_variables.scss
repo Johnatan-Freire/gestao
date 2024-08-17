@@ -12,7 +12,7 @@ body {
 }
 
 .logo {
-    width: 50px;
+    width: 35px;
 }
 
 .infoCheck {
@@ -62,4 +62,22 @@ body {
 
 .contactMain {
     background-color: rgb(0, 52, 163);
+}
+
+.footer, .footer div{
+    background-color: #fff;
+}
+
+.messageMain{
+    height: 100px;
+}
+
+.about section{
+    padding-top: 9rem;
+    padding-bottom: 9rem;
+}
+
+.about header{
+    padding-top: 6rem + 3.5rem;
+    padding-bottom: 6rem;
 }
