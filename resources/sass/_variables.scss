@@ -1,0 +1,65 @@
+$body-bg: #f8fafc;
+
+$font-family-sans-serif: 'Nunito', sans-serif;
+$font-size-base: 0.9rem;
+$line-height-base: 1.6;
+
+body {
+    background-color: $body-bg;
+    font-family: $font-family-sans-serif;
+    font-size: $font-size-base;
+    line-height: $line-height-base;
+}
+
+.logo {
+    width: 50px;
+}
+
+.infoCheck {
+    margin-bottom: 1.5%;
+
+    img {
+        width: 20px;
+        margin-right: 10px;
+    }
+}
+
+.video {
+    text-align: center;
+    margin-top: 2.5%;
+}
+
+.video img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+@media (min-width: 768px) {
+    .main {
+        flex-direction: row;
+    }
+}
+
+.apresentationMain,
+.contactMain {
+    flex: 1;
+    min-height: 100vh;
+    color: white;
+    padding: 2%;
+}
+
+.apresentationMain {
+    background-color: rgb(0, 21, 143);
+}
+
+.contactMain {
+    background-color: rgb(0, 52, 163);
+}
