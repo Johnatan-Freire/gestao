@@ -81,27 +81,6 @@
         </section>
     </main>
 
-    <form action="" class="ls-form ls-form-horizontal" data-ls-module="form">
-        <label class="ls-label col-md-3">
-          <b class="ls-label-text">Telefone</b>
-          <input type="text" name="cel2" class="ls-mask-phone8_with_ddd" placeholder="(99) 9999-9999" >
-        </label>
-      
-        <label class="ls-label col-md-3">
-          <b class="ls-label-text">CNPJ</b>
-          <input type="text" name="cnpj" class="ls-mask-cnpj" placeholder="00.000.000/0000-00" >
-        </label>
-      
-        <label class="ls-label col-md-3">
-          <b class="ls-label-text">CPF</b>
-          <input type="text" name="cpf" class="ls-mask-cpf" placeholder="000.000.000-00" >
-        </label>
-        <label class="ls-label col-md-2">
-          <b class="ls-label-text">CEP</b>
-          <input type="text" name="cep" class="ls-mask-cep" placeholder="00000-000" >
-        </label>
-      </form>
-
     <footer class="text-center text-white" style="background-color: #ffffff;">
         <div class="text-center p-3" style="background-color: rgb(255, 255, 255);">
             <span class="text-black">© 2024 Feito por:</span>
