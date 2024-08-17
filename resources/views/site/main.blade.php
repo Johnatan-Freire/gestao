@@ -1,33 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('site.layout.basic')
+@section('title', 'Inicio')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
-</head>
+@section('content')
+    @include('site.layout.partials.header')
 
-<body>
-    <header>
-        <nav class="navbar navbar-expand-lg bg-body-tertiary">
-            <div class="container-fluid"><a class="navbar-brand" href="{{ route('site.index') }}"><img
-                        src="{{ asset('images/logo.png') }}" alt="Logo da empresa" class="logo"></a><button
-                    class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"><span
-                        class="navbar-toggler-icon"></span></button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav">
-                        <li class="nav-item"><a class="nav-link active" aria-current="page"
-                                href="{{ route('site.index') }}">Início</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{{ route('site.about') }}">Sobre nós</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{{ route('site.contact') }}">Contato</a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
     <main class="main">
         <section class="apresentationMain">
             <div class="contentMain">
@@ -58,10 +34,13 @@
                 <p>Em caso de dúvidas, estamos à disposição para ajudar. Entre em contato pelo e-mail ou pelo
                     telefone.</p>
                 <form class="row g-3">
-                    <div class="col-12"><b><label for="name"class="form-label">Nome</label></b><input type="text"
-                            class="form-control" id="name" placeholder="Julia Helen Martins"></div>
-                    <div class="col-12"><b><label for="inputAddress2"class="form-label">E-mail</label></b><input
-                            type="email" class="form-control" id="inputAddress2" placeholder="juliahelen@gmail.com">
+                    <div class="col-12">
+                        <b><label for="name"class="form-label">Nome</label></b>
+                        <input type="text" class="form-control" id="name" placeholder="Julia Helen Martins">
+                    </div>
+                    <div class="col-12">
+                        <b><label for="inputAddress2"class="form-label">E-mail</label></b>
+                        <input type="email" class="form-control" id="inputAddress2" placeholder="juliahelen@gmail.com">
                     </div>
                     <div class="col-12">
                         <b><label for="fone"class="form-label">Telefone</label></b>
@@ -81,12 +60,5 @@
         </section>
     </main>
 
-    <footer class="text-center text-white footer">
-        <div class="text-center p-3">
-            <span class="text-black">© 2024 Feito por:</span>
-            <a class="text-black" href="https://johnatanfreire.com.br/">Johnatan Freire</a>
-        </div>
-    </footer>
-</body>
-
-</html>
+    @include('site.layout.partials.footer')
+@endsection
