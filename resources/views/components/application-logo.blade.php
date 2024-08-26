@@ -1,0 +1,1 @@
+<a class="navbar-brand" href="{{ route('site.index') }}"><img src="{{ asset('images/logo.png') }}" alt="Logo da empresa" class="logo w-20"></a>

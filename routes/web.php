@@ -1,17 +1,35 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MainController;
+use App\Http\Controllers\AboutController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\ClientController;
 
-Route::get('/', [\App\Http\Controllers\MainController::class, 'index'])->name('site.index');
-Route::get('/contato', [\App\Http\Controllers\ContactController::class, 'index'])->name('site.contact');
-Route::post('/contato', [\App\Http\Controllers\ContactController::class, 'store']);
-Route::get('/sobre', [\App\Http\Controllers\AboutController::class, 'index'])->name('site.about');
-Route::get('/login', function(){return 'login';})->name('site.login');
+Route::get('/', [MainController::class, 'index'])->name('site.index');
+Route::get('sobre', [AboutController::class, 'index'])->name('site.about');
+Route::get('contato', [ContactController::class, 'index'])->name('site.contact');
+Route::post('contato', [ContactController::class, 'store'])->name('site.contact');
 
-Route::prefix('/app')->group(function(){
-    Route::get('/clientes', function(){return 'clientes';})->name('app.client');
+Route::get('login', [AuthenticatedSessionController::class, 'create'])->name('login');
+Route::get('nova-conta', [RegisteredUserController::class, 'create'])->name('create.acount');
+
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware('auth')->prefix('/app')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::get('/clientes', [ClientController::class, 'index'])->name('app.client');
     Route::get('/fornecedores', function(){return 'fornecedor';})->name('app.provider');
     Route::get('/produtos', function(){return 'produto';})->name('app.product');
 });
 
-Route::fallback(function(){echo 'Esta página não existe, <a href="'.route('site.index').'"> Clique aqui</a> para voltar para a página inicial';});
+require __DIR__.'/auth.php';

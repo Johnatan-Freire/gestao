@@ -13,6 +13,8 @@
                     <li class="nav-item"><a class="nav-link" href="{{ route('site.contact') }}">Contato</a></li>
                 </ul>
             </div>
+
+            <a href="{{ route('login') }}" class="text-decoration-none text-black">Login</a>
         </div>
     </nav>
 </header>
