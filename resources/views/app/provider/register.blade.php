@@ -5,7 +5,7 @@
 <x-app-layout>
     <header class="bg-primary bg-gradient text-white">
         <div class="container px-4 py-5 text-center">
-            <h1 class="fw-bolder">Fornecedores</h1>
+            <h1 class="fw-bolder">Cadastrar Fornecedor</h1>
         </div>
     </header>
 
@@ -77,7 +77,7 @@
                         placeholder="americanas@gmail.com">
                 </div>
             </div>
-            <div class="col-12"><button type="submit" class="btn btn-primary">Pesquisar</button></div>
+            <div class="col-12"><button type="submit" class="btn btn-primary">Cadastrar</button></div>
         </div>
     </form>
     
