@@ -8,6 +8,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\ProviderController;
 
 Route::get('/', [MainController::class, 'index'])->name('site.index');
 Route::get('sobre', [AboutController::class, 'index'])->name('site.about');
@@ -27,9 +28,11 @@ Route::middleware('auth')->prefix('/app')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    Route::get('/clientes', [ClientController::class, 'index'])->name('app.client');
-    Route::get('/fornecedores', function(){return 'fornecedor';})->name('app.provider');
-    Route::get('/produtos', function(){return 'produto';})->name('app.product');
+    Route::get('/cliente', [ClientController::class, 'index'])->name('app.client');
+
+    Route::get('/fornecedor', [ProviderController::class, 'index'])->name('app.provider');
+
+    Route::get('/produto', function () { return 'produto'; })->name('app.product');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

@@ -1,4 +1,4 @@
-@extends('site.layout.basic')
+@extends('layouts.basic')
 @section('title', 'Sobre nós')
 
 @section('content')
@@ -67,5 +67,5 @@
         </section>
     </main>
     
-    @include('site.layout.partials.footer')
+    @include('layouts.footer')
 @endsection

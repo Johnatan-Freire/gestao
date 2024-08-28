@@ -1,4 +1,4 @@
-@extends('site.layout.basic')
+@extends('layouts.basic')
 
 @section('content')
     @include('site.layout.partials.header')
@@ -12,5 +12,5 @@
     
     @endcomponent
 
-    @include('site.layout.partials.footer')
+    @include('layouts.footer')
 @endsection
