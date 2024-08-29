@@ -1,4 +1,8 @@
-{{ $slot }}
+@if (session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
 <form action="{{ route('site.contact') }}" method="post">
     @csrf
     <div class="mx-4 my-3">

@@ -24,16 +24,16 @@ class ContactController extends Controller
                 'name.required' => 'Preencha este campo.',
                 'name.min' => 'Isira um nome válido.',
                 'email.required' => 'Preencha este campo.',
-                'email.email' => 'Insira um e-mail válido.',
+                'email.email' => 'E-mail inválido.',
                 'phone.required' => 'Preencha este campo.',
-                'phone.min' => 'Insira um número para contato válido.',
-                'phone.regex' => 'Insira um número para contato válido.',
+                'phone.min' => 'Número inválido.',
+                'phone.regex' => 'Número inválido.',
                 'subject.required' => 'Preencha este campo.',
                 'message.required' => 'Preenche este campo.',
             ],
         );
         Contact::create($request->all());
 
-        return redirect()->route('site.index');
+        return redirect()->route('site.index')->with('success', 'Contato enviado com sucesso!');;
     }
 }

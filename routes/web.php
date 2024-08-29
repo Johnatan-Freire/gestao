@@ -30,11 +30,12 @@ Route::middleware('auth')->prefix('/app')->group(function () {
 
     Route::get('/cliente', [ClientController::class, 'index'])->name('app.client');
 
-    Route::get('/fornecedor', [ProviderController::class, 'index'])->name('app.provider');
-    Route::get('/fornecedor/cadastrar', [ProviderController::class, 'add'])->name('app.provider.add');
-    Route::post('/fornecedor/lista', [ProviderController::class, 'show'])->name('app.provider.show');
+    Route::get('fornecedor', [ProviderController::class, 'index'])->name('app.provider');
+    Route::get('fornecedor/cadastrar', [ProviderController::class, 'create'])->name('app.provider.create');
+    Route::post('fornecedor/cadastrar', [ProviderController::class, 'store'])->name('app.provider.store');
+    Route::get('fornecedor/lista', [ProviderController::class, 'show'])->name('app.provider.list');
 
-    Route::get('/produto', function () { return 'produto'; })->name('app.product');
+    Route::get('produto', function () { return 'produto'; })->name('app.product');
 });
 
 require __DIR__ . '/auth.php';

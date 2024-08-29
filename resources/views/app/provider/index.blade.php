@@ -13,10 +13,10 @@
         <div class="container-fluid">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('app.provider.add') }}">Novo</a>
+                    <a class="nav-link" href="{{ route('app.provider.create') }}">Novo</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('app.provider.show') }}">Consultar</a>
+                    <a class="nav-link" href="{{ route('app.provider.list') }}">Consultar</a>
                 </li>
             </ul>
         </div>
@@ -68,7 +68,7 @@
             <div class="row">
                 <div class="col-md-6 mb-3">
                     <b><label for="cnpj" class="form-label">CNPJ</label></b>
-                    <input type="text" class="form-control telMask" id="cnpj" name="cnpj" 
+                    <input type="text" class="form-control cnpjMask" id="cnpj" name="cnpj" 
                         placeholder="00.000.000/0000-00">
                 </div>
                 <div class="col-md-6 mb-3">
