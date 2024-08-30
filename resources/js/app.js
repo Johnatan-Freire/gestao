@@ -8,7 +8,7 @@ Alpine.start();
 
 import Inputmask from 'inputmask';
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     var telElement = document.querySelector('.telMask');
     var cnpjElement = document.querySelector('.cnpjMask');
 

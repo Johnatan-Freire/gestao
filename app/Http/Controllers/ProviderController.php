@@ -7,19 +7,36 @@ use App\Models\Provider;
 
 class ProviderController extends Controller
 {
-    public function index(){
-        return view('app.provider.index');
+    public function index(Request $request)
+    {
+        $query = Provider::query();
+
+        if ($request->has('filter') && $request->filter != '' && $request->has('search') && $request->search != '') {
+            $query->where($request->filter, 'like', '%' . $request->search . '%');
+        } elseif ($request->has('search') && $request->search != '') {
+            $query->where(function ($q) use ($request) {
+                $q->where('name', 'like', '%' . $request->search . '%')
+                    ->orWhere('cnpj', 'like', '%' . $request->search . '%')
+                    ->orWhere('email', 'like', '%' . $request->search . '%')
+                    ->orWhere('uf', 'like', '%' . $request->search . '%');
+            });
+        }
+
+        $providers = $query->get();
+        return view('app.provider.index', ['providers' => $providers]);
     }
 
-    public function create(){
+    public function create()
+    {
         return view('app.provider.register');
     }
 
-    public function store(Request $request){
+    public function store(Request $request)
+    {
         $msg = 'Cadastro realizado com sucesso';
 
         $request->validate(
-            [ 
+            [
                 'name' => 'required',
                 'uf' => 'required|min:2|max:2',
                 'cnpj' => 'required|min:18|regex:/^\d{2}\.\d{3}\.\d{3}\/\d{4}-\d{2}$/',
@@ -36,14 +53,10 @@ class ProviderController extends Controller
                 'email.required' => 'Preencha este campo.',
                 'email.email' => 'E-mail inválido.',
             ]
-            );
+        );
 
-            Provider::create($request->all());
+        Provider::create($request->all());
 
-            return redirect()->route('app.provider.create')->with('success', 'Cadastro realizado com sucesso!');
-    }
-
-    public function show(){
-        return view('app.provider.list');
+        return redirect()->route('app.provider.create')->with('success', 'Cadastro realizado com sucesso!');
     }
 }

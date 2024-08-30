@@ -19,7 +19,7 @@
                         <a class="nav-link" href="{{ route('app.product') }}">Produtos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('app.provider') }}">Fornecedores</a>
+                        <a class="nav-link" href="{{ route('app.provider.index') }}">Fornecedores</a>
                     </li>
                 </ul>
 

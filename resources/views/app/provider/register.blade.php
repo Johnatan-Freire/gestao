@@ -9,18 +9,20 @@
             </div>
         </header>
 
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <nav class="navbar bg-body-tertiary navbar-expand-lg navbar-light bg-light border">
             <div class="container-fluid">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('app.provider.store') }}">Novo</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('app.provider.list') }}">Consultar</a>
-                    </li>
-                </ul>
+                <div class="btn-group" role="group" aria-label="Basic outlined example">
+                    <a href="{{ route('app.provider.create') }}" class="btn btn-outline-primary">Novo</a>
+                    <a href="{{ route('app.provider.index') }}" class="btn btn-outline-primary">Consultar</a>
+                    
+                </div>
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Pesquisar" aria-label="Search">
+                    <button class="btn btn-outline-primary" type="submit">Pesquisar</button>
+                </form>
             </div>
         </nav>
+
 
         @if (session('success'))
             <div class="alert alert-success">
