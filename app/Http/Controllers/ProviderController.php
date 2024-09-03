@@ -33,30 +33,41 @@ class ProviderController extends Controller
 
     public function store(Request $request)
     {
-        $msg = 'Cadastro realizado com sucesso';
-
-        $request->validate(
-            [
-                'name' => 'required',
-                'uf' => 'required|min:2|max:2',
-                'cnpj' => 'required|min:18|regex:/^\d{2}\.\d{3}\.\d{3}\/\d{4}-\d{2}$/',
-                'email' => 'required|email',
-            ],
-            [
-                'name.required' => 'Preencha este campo.',
-                'uf.required' => 'Selecione um UF.',
-                'uf.min' => 'UF inválido.',
-                'uf.max' => 'UF inválido.',
-                'cnpj.required' => 'Preencha este campo.',
-                'cnpj.min' => 'CNPJ inválido.',
-                'cnpj.regex' => 'CNPJ inválido.',
-                'email.required' => 'Preencha este campo.',
-                'email.email' => 'E-mail inválido.',
-            ]
-        );
+        $request->validate([
+            'name' => 'required',
+            'uf' => 'required|min:2|max:2',
+            'cnpj' => 'required|min:18|regex:/^\d{2}\.\d{3}\.\d{3}\/\d{4}-\d{2}$/',
+            'email' => 'required|email',
+        ]);
 
         Provider::create($request->all());
+        return redirect()->route('app.provider.create')->with('success', 'Cadastro realizado com sucesso');
+    }
 
-        return redirect()->route('app.provider.create')->with('success', 'Cadastro realizado com sucesso!');
+    public function edit($id)
+    {
+        $provider = Provider::findOrFail($id);
+        return view('app.provider.register', ['provider' => $provider]);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'name' => 'required',
+            'uf' => 'required|min:2|max:2',
+            'cnpj' => 'required|min:18|regex:/^\d{2}\.\d{3}\.\d{3}\/\d{4}-\d{2}$/',
+            'email' => 'required|email',
+        ]);
+
+        $provider = Provider::findOrFail($id);
+        $provider->update($request->all());
+        return redirect()->route('app.provider.edit', ['id' => $id])->with('success', 'Cadastro atualizado com sucesso');
+    }
+
+    public function delete($id)
+    {
+        $provider = Provider::findOrFail($id);
+        $provider->delete();
+        return redirect()->route('app.provider.index')->with('success', 'Fornecedor removido com sucesso');
     }
 }
