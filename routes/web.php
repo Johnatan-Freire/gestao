@@ -30,12 +30,12 @@ Route::middleware('auth')->prefix('/app')->group(function () {
 
     Route::get('/cliente', [ClientController::class, 'index'])->name('app.client');
 
-    Route::get('fornecedor', [ProviderController::class, 'index'])->name('app.provider.index');
-    Route::get('fornecedor/cadastrar', [ProviderController::class, 'create'])->name('app.provider.create');
-    Route::post('fornecedor', [ProviderController::class, 'store'])->name('app.provider.store');
-    Route::get('fornecedor/editar/{id}/{msg?}', [ProviderController::class, 'edit'])->name('app.provider.edit');
-    Route::put('fornecedor/{id}', [ProviderController::class, 'update'])->name('app.provider.update');
-    Route::delete('fornecedor/{id}', [ProviderController::class, 'delete'])->name('app.provider.delete');
+    Route::get('/fornecedor', [ProviderController::class, 'index'])->name('app.provider.index');
+    Route::get('/fornecedor/cadastrar', [ProviderController::class, 'create'])->name('app.provider.create');
+    Route::post('/fornecedor', [ProviderController::class, 'store'])->name('app.provider.store');
+    Route::get('/fornecedor/editar/{id}', [ProviderController::class, 'edit'])->name('app.provider.edit');
+    Route::put('/fornecedor/{id}', [ProviderController::class, 'update'])->name('app.provider.update');
+    Route::delete('/fornecedor/{id}', [ProviderController::class, 'delete'])->name('app.provider.delete');
 
     Route::get('produto', function () {
         return 'produto';

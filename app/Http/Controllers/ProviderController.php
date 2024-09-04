@@ -9,7 +9,7 @@ class ProviderController extends Controller
 {
     public function index(Request $request)
     {
-        $query = Provider::query();
+        $query = Provider::query()->orderBy('id', 'asc');
 
         if ($request->has('filter') && $request->filter != '' && $request->has('search') && $request->search != '') {
             $query->where($request->filter, 'like', '%' . $request->search . '%');
@@ -22,8 +22,8 @@ class ProviderController extends Controller
             });
         }
 
-        $providers = $query->get();
-        return view('app.provider.index', ['providers' => $providers]);
+        $providers = $query->paginate(10)->appends($request->all());;
+        return view('app.provider.index', ['providers' => $providers, 'request' => $request->all()]);
     }
 
     public function create()
