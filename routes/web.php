@@ -9,6 +9,7 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ProviderController;
+use App\Http\Controllers\ProductController;
 
 Route::get('/', [MainController::class, 'index'])->name('site.index');
 Route::get('sobre', [AboutController::class, 'index'])->name('site.about');
@@ -35,11 +36,17 @@ Route::middleware('auth')->prefix('/app')->group(function () {
     Route::post('/fornecedor', [ProviderController::class, 'store'])->name('app.provider.store');
     Route::get('/fornecedor/editar/{id}', [ProviderController::class, 'edit'])->name('app.provider.edit');
     Route::put('/fornecedor/{id}', [ProviderController::class, 'update'])->name('app.provider.update');
-    Route::delete('/fornecedor/{id}', [ProviderController::class, 'delete'])->name('app.provider.delete');
+    Route::delete('/fornecedor/{id}', [ProviderController::class, 'destroy'])->name('app.provider.destroy');
 
-    Route::get('produto', function () {
-        return 'produto';
-    })->name('app.product');
+   Route::resource('produto', ProductController::class)->names([
+    'index' => 'app.product.index',
+    'create' => 'app.product.create',
+    'store' => 'app.product.store',
+    'show' => 'app.product.show',
+    'edit' => 'app.product.edit',
+    'update' => 'app.product.update',
+    'destroy' => 'app.product.destroy',
+   ]);
 });
 
 require __DIR__ . '/auth.php';

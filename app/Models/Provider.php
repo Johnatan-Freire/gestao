@@ -9,5 +9,7 @@ class Provider extends Model
 {
     use HasFactory;
 
+    use HasFactory;
+
     protected $fillable = ['name', 'uf', 'cnpj', 'email'];
 }

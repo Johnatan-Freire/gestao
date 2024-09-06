@@ -1,22 +1,22 @@
 @extends('layouts.basic')
-@section('title', 'Fornecedor')
+@section('title', 'Produto')
 
 @section('content')
     <x-app-layout>
         <header class="bg-primary bg-gradient text-white">
             <div class="container px-4 py-5 text-center">
-                <h1 class="fw-bolder">Fornecedores</h1>
+                <h1 class="fw-bolder">Produtos</h1>
             </div>
         </header>
         <nav class="navbar bg-body-tertiary navbar-expand-lg navbar-light bg-light border">
             <div class="container-fluid d-flex justify-content-between">
                 <div class="btn-group" role="group" aria-label="Basic outlined example">
-                    <a href="{{ route('app.provider.create') }}" class="btn btn-outline-primary">Cadastrar Fornecedor</a>
-                    <a href="{{ route('app.provider.index') }}" class="btn btn-outline-primary">Consultar Fornecedor</a>
+                    <a href="{{ route('app.product.create') }}" class="btn btn-outline-primary">Cadastrar Produto</a>
+                    <a href="{{ route('app.product.index') }}" class="btn btn-outline-primary">Consultar Produto</a>
                 </div>
 
                 <div class="d-flex align-items-center">
-                    <form class="d-flex ms-2" role="search" action="{{ route('app.provider.index') }}" method="GET">
+                    <form class="d-flex ms-2" role="search" action="{{ route('app.product.index') }}" method="GET">
                         <input type="hidden" id="filter" name="filter" value="">
                         <input class="form-control me-2" type="search" name="search" placeholder="Pesquisar"
                             aria-label="Search">
@@ -30,23 +30,23 @@
             <thead>
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Nome</th>
-                    <th scope="col">CNPJ</th>
-                    <th scope="col">E-mail</th>
-                    <th scope="col">UF</th>
+                    <th scope="col">Produto</th>
+                    <th scope="col">Preço</th>
+                    <th scope="col">Estoque</th>
+                    <th scope="col">Fornecedor</th>
                     <th scope="col">Ações</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($providers as $provider)
+                @foreach ($products as $product)
                     <tr>
-                        <th scope="row">{{ $provider->id }}</th>
-                        <td>{{ $provider->name }}</td>
-                        <td>{{ $provider->cnpj }}</td>
-                        <td>{{ $provider->email }}</td>
-                        <td>{{ $provider->uf }}</td>
+                        <th scope="row">{{ $product->id }}</th>
+                        <td>{{ $product->product }}</td>
+                        <td>{{ $product->price }}</td>
+                        <td>{{ $product->stock }}</td>
+                        <td>{{ $product->provider->name ?? 'Fornecedor não cadastrado' }}</td>
                         <td>
-                            <a href="{{ route('app.provider.edit', $provider->id) }}" class="btn btn-sm">
+                            <a href="{{ route('app.product.edit', $product->id) }}" class="btn btn-sm">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                     class="bi bi-pencil-square" viewBox="0 0 16 16">
                                     <path
@@ -56,7 +56,7 @@
                                 </svg>
                             </a>
 
-                            <form action="{{ route('app.provider.destroy', $provider->id) }}" method="POST"
+                            <form action="{{ route('app.product.destroy', $product->id) }}" method="POST"
                                 style="display:inline-block;">
                                 @csrf
                                 @method('DELETE')
@@ -79,7 +79,8 @@
         </table>
 
         <div class="d-flex flex-column align-items-center">
-            {{ $providers->appends(request()->input())->links('pagination::bootstrap-4') }}
+            {{ $products->appends(request()->input())->links('pagination::bootstrap-4') }}
+
         </div>
         
 

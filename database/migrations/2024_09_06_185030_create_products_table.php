@@ -13,9 +13,13 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 25);
-            $table->text('description')->nullable();
+            $table->string('product', 100);
+            $table->decimal('price', 10, 2);
+            $table->integer('stock');
+            $table->unsignedBigInteger('provider_id');
             $table->timestamps();
+
+            $table->foreign('provider_id')->references('id')->on('providers')->onDelete('cascade');
         });
     }
 
@@ -26,4 +30,5 @@ return new class extends Migration
     {
         Schema::dropIfExists('products');
     }
+
 };

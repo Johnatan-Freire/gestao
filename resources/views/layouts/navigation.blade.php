@@ -16,7 +16,7 @@
                         <a class="nav-link active" aria-current="page" href="{{ route('app.client') }}">Clientes</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('app.product') }}">Produtos</a>
+                        <a class="nav-link" href="{{ route('app.product.index') }}">Produtos</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('app.provider.index') }}">Fornecedores</a>
