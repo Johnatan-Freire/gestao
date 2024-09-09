@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Provider;
 
 class ProductController extends Controller
 {
@@ -35,16 +36,41 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return 'create';
+        $providers = Provider::all();
+        return view('app.product.register', ['providers' => $providers]);
     }
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
-        return 'store';
-    }
+{
+    $request->validate([
+        'product' => 'required|string|max:100',
+        'price' => 'required|string',
+        'stock' => 'required|integer|min:0',
+        'provider_id' => 'required|exists:providers,id',
+    ],
+    [
+        'product.required' => 'Por favor, informe o nome do produto.',
+        'price.required' => 'Por favor, informe o preço do produto.',
+        'stock.required' => 'Por favor, informe a quantidade em estoque.',
+        'stock.integer' => 'A quantidade em estoque deve ser um número inteiro.',
+        'provider_id.required' => 'Por favor, selecione um fornecedor válido.',
+        'provider_id.exists' => 'O fornecedor selecionado não é válido.',
+    ]);
+
+    $price = str_replace(['R$', '.', ','], ['', '', '.'], $request->input('price'));
+
+    Product::create([
+        'product' => $request->input('product'),
+        'price' => $price,
+        'stock' => $request->input('stock'),
+        'provider_id' => $request->input('provider_id'),
+    ]);
+
+    return redirect()->route('app.product.create')->with('success', 'Produto cadastrado com sucesso');
+}
 
     /**
      * Display the specified resource.
@@ -57,24 +83,58 @@ class ProductController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
-    {
-        return 'edit';
-    }
+    public function edit($id)
+{
+    $product = Product::findOrFail($id);
+    $providers = Provider::all();
+
+    return view('app.product.register', ['product' => $product, 'providers' => $providers]);
+}
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
-    {
-        return 'update';
-    }
+    public function update(Request $request, $id)
+{
+    $request->validate([
+        'product' => 'required|string|max:100',
+        'price' => 'required|string',
+        'stock' => 'required|integer|min:0',
+        'provider_id' => 'required|exists:providers,id',
+    ],
+    [
+        'product.required' => 'Por favor, informe o nome do produto.',
+        'price.required' => 'Por favor, informe o preço do produto.',
+        'stock.required' => 'Por favor, informe a quantidade em estoque.',
+        'stock.integer' => 'A quantidade em estoque deve ser um número inteiro.',
+        'provider_id.required' => 'Por favor, selecione um fornecedor válido.',
+        'provider_id.exists' => 'O fornecedor selecionado não é válido.',
+    ]);
+
+    $product = Product::findOrFail($id);
+
+    $price = str_replace(['R$', '.', ','], ['', '', '.'], $request->input('price'));
+
+    $product->update([
+        'product' => $request->input('product'),
+        'price' => $price,  
+        'stock' => $request->input('stock'),
+        'provider_id' => $request->input('provider_id'),
+    ]);
+
+    return redirect()->route('app.product.edit', $id)->with('success', 'Produto atualizado com sucesso');
+}
+
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        return 'destroy';
+        $product = Product::findOrFail($id);
+        $product->delete();
+    
+        return redirect()->route('app.product.index')->with('success', 'Produto removido com sucesso');
     }
+    
 }

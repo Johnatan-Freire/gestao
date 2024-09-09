@@ -3,6 +3,7 @@
 
 @section('content')
     <x-app-layout>
+        <div class="d-flex flex-column min-vh-100">
         <header class="bg-primary bg-gradient text-white">
             <div class="container px-4 py-5 text-center">
                 <h1 class="fw-bolder">Produtos</h1>
@@ -42,7 +43,7 @@
                     <tr>
                         <th scope="row">{{ $product->id }}</th>
                         <td>{{ $product->product }}</td>
-                        <td>{{ $product->price }}</td>
+                        <td>{{ 'R$ ' . number_format($product->price, 2, ',', '.') }}</td>
                         <td>{{ $product->stock }}</td>
                         <td>{{ $product->provider->name ?? 'Fornecedor não cadastrado' }}</td>
                         <td>
@@ -83,9 +84,11 @@
 
         </div>
         
+    </div>
 
-
-        @include('layouts.footer')
+        <footer class="mt-auto">
+            @include('layouts.footer')
+        </footer>
 
     </x-app-layout>
 @endsection
